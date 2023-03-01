@@ -1,0 +1,12 @@
+<div>
+    <a id="vr_usability_domain" style="text-align: left; color: {{bco.usability_domain_status.1}};" class="expandcollapse" data-before="+" data-toggle="collapse" href="#usability_items" role="link" aria-expanded="false" aria-controls="collapseExample" onclick="updatestate(this)">
+        usability domain
+    </a>
+    <div class="collapse" id="usability_items">
+        <div class="card card-body">
+            {% for item in bco.usability_domain %}
+                <p id="{{item.5}}" style="padding-left: 10px; height: 25px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{item.2}};" >{{ item.0 }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

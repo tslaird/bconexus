@@ -1,0 +1,46 @@
+
+{% block file_uploader %}
+{% csrf_token %}
+<div id='pfda_export_container' class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:navy;">
+                <h4 class="modal-title" id="myModalLabel" style="float: left; color: white;">Export BCO to precisionFDA</h4>
+                <button type="button" class="close" data-dismiss="modal" style="color: white;" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; flex-direction: row;">
+                    <label style="flex: 1; justify-content: flex-end;" for="#pfda-export-bco-name">BCO Name</label>
+                    <input type="text" style="border-radius: 10px; flex: 2;" id="pfda-export-bco-name" placeholder="BCO name">
+                </div>
+                <div id="pfda_space_div" style="padding: 5px;">
+                    <input type="text" id="pfda-export-token" name="pfda-access-token" style="padding-right: 10px; visibility: hidden; width: 200px; border-radius: 10px;" placeholder="PFDA access token">
+                    <button type="submit" class="btn btn-primary" style="padding-left: 10px; border-radius: 10px;" onclick="get_spaces(this)">Get Spaces</button>
+                    <div id="pfda_export_space_selector_div" style="visibility: hidden; padding: 5px;">
+                        <label for="pfda-spaces">Select Space:</label>
+                        <span style="padding-left: 30px;">
+                        <select id="pfda-export-space" style="width: 250px; border-radius: 10px;" name='pfda-spaces' onchange="get_folders()" >
+                            <option selected="selected" value="">My Home</option>
+                        </select>
+                        </span>
+</div>
+                    <div id="pfda_export_folder_selector_div" style="visibility: hidden; padding: 5px;">
+                        <label for="pfda-folders">Select Folder:</label>
+                        <span style="padding-left: 30px;">
+                        <select id="pfda-export-folder" style="width: 250px; border-radius: 10px;" name='pfda-folders' >
+                            <option value="">Root</option>
+                        </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" style="border-radius: 10px;" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" style="border-radius: 10px;" onclick="export_file_to_pfda(this)">Upload to precisionFDA</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

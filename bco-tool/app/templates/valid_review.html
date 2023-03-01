@@ -1,0 +1,38 @@
+{% load static %}
+{% block review %}
+<div id = "review_screen">
+<div class="container px-4" style="width: 2000px;">
+    <div class="row gx-5">
+      <div class="col" style="width: 50%;">
+       <div class="p-3 border bg-light" >Object Information
+        <div id="json_viewer" class="treeview" style="text-align: left;">
+          <!-- <button class= "btn btn-link" type="button" role="link" style="color: grey;" onclick="expand_all()">expand_all</button> -->
+          {% include "2791/2791object_review.html" %}
+          {% include "usability/usability_domain_review.html" %}
+          {% include "parametric/parametric_domain_review.html" %}
+          {% include "io/io_domain_review.html" %}
+          {% include "error/error_domain_review.html"%}
+          {% include "execution/execution_domain_review.html"%}
+          {% include "description/description_domain_review.html"%}
+          {% include "provenance/provenance_domain_review.html"%}
+        </div>
+      </div>
+    </div>
+    <div class="col" style="width: 50%;">
+      <div class="p-3 border bg-light">Validation
+        <div id="validation_viewer" class="treeview" style="text-align: left;">
+          {% include "2791/2791object_validation.html" %}
+          {% include "usability/usability_domain_validation.html" %}
+          {% include "error/error_domain_validation.html" %}
+          {% include "parametric/parametric_domain_validation.html" %}
+          {% include "io/io_domain_validation.html" %}
+          {% include "provenance/provenance_domain_validation.html" %}
+          {% include "description/description_domain_validation.html" %}
+          {% include "execution/execution_domain_validation.html" %}
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

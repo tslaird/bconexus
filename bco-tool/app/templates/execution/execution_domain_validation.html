@@ -1,0 +1,58 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >Execution domain</p>
+        <p style="text-align: left; color: {{bco.execution_domain_status.1}}" >{{ bco.execution_domain_status.0 }}</p>
+        {% for key, value in bco.execution_domain.items %}
+            {% if key == 'script' %}
+                {% for sc in value %}
+                
+                    {% for c_key, c_value in sc.items %}
+                        {% for cc_key, cc_value in c_value.items %}
+                            {% if cc_value.1 == 'fail' %}
+                                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{cc_value.4}}" element_id_to_highlight="{{cc_value.5}}">{{ cc_value.3 }}</button>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            {% if key == 'script_driver' %}
+                {% if value.1 == 'fail' %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+                {% endif %}
+            {% endif %}
+            {% if key == 'software_prerequisites' %}
+                {% for sw in value %}
+                    {% for c_key, c_value in sw.items %}
+                        {% if c_key == 'uri' %}
+                            {% for cc_key, cc_value in c_value.items %}
+                                {% if cc_value.1 == 'fail' %}
+                                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{cc_value.4}}" element_id_to_highlight="{{cc_value.5}}">{{ cc_value.3 }}</button>  
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            {% if c_value.1 == 'fail' %}
+                                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>  
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif%}
+            {% if key == 'external_data_endpoints'%}
+                {% for edp in value %}
+                    {% for c_key, c_value in edp.items %}
+                        {% if c_value.1 == 'fail' %}
+                            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>  
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            {% if key == 'environment_variables'%}
+                {% for c_key, c_value in value.items %}
+                    {% if c_value.1 == 'fail' %}
+                        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>  
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

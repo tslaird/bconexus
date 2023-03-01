@@ -1,0 +1,23 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >2791 Object</p>
+        <p style="text-align: left; color:{{bco.object_2791_status.1}};" >{{bco.object_2791_status.0}}</p>
+        {% for key, value in bco.items %}   
+            {% if key == 'object_id' %}
+                {% if value.1 == 'fail' %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>       
+                {% endif %}
+            {% endif %}
+            {% if key == 'spec_version' %}
+                {% if value.1 == 'fail' %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+                {% endif %}
+            {% endif %}
+            {% if key == 'etag' %}
+                {% if value.1 == 'fail' %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

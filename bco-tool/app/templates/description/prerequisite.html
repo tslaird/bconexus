@@ -1,0 +1,50 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/description.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+        <tr>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.prerequisite.items.name', '{{prerequisite_meta.name.description}}')">prerequisite.name</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link" style="color: black; text-decoration: none;">prerequisite.uri.filename</button></th>
+            <th scope="col"><button type="button" class="btn btn-link" style="color: black; text-decoration: none;">prerequisite.uri.uri</button></th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.prerequisite.items.uri.access_time', '{{prerequisite_meta.uri.access_time.description}}')">prerequisite.uri.access_time</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.prerequisite.items.uri.sha1_checksum', '{{prerequisite_meta.uri.sha1_checksum.description}}')">prerequisite.uri.sha1_checksum</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in prequisites %}
+        <tr style="text-align: left;">
+            <td contenteditable='true' height="40px" key="name" 
+                onblur="edit_array_object_value('prerequisite', this, '{{forloop.counter0}}', '{{step_index}}')">
+                {{ p.name }}</td>
+            <td contenteditable='true' height="40px" key="uri.filename" 
+                onblur="edit_array_object_value('prerequisite', this, '{{forloop.counter0}}', '{{step_index}}')">{{ p.uri.filename }}</td>
+            <td contenteditable='true' height="40px" key="uri.uri" 
+                onblur="edit_array_object_value('prerequisite', this, '{{forloop.counter0}}', '{{step_index}}')">{{ p.uri.uri }}</td>
+            <td height="40px">
+                <input key="uri.access_time" type="datetime-local" step="10" value="{{ p.uri.access_time }}" style="border-radius: 10px; background-color:transparent;" onchange="edit_array_object_value('prerequisite', this, '{{forloop.counter0}}', '{{step_index}}')">
+            </td>
+            <td contenteditable='true' height="40px" key="uri.sha1_checksum" 
+                onblur="edit_array_object_value('prerequisite', this, '{{forloop.counter0}}', '{{step_index}}')">{{ p.uri.shal_checksum }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button class="btn btn-outline-primary" style="padding-left:5px" uri="prerequisite" parentIndex="{{step_index}}" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+{% endblock %}

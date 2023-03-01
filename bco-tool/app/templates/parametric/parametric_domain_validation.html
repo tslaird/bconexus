@@ -1,0 +1,16 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >Parametric domain</p>
+        <p style="text-align: left; color: {{bco.parametric_domain_status.1}}" >{{ bco.parametric_domain_status.0 }}</p>
+        {% if bco.parametric_domain_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.parametric_domain_status.3}}" element_id_to_highlight="{{bco.parametric_domain_status.3}}">{{ bco.parametric_domain_status.2 }}</button>
+        {% endif %}
+        {% for i in bco.parametric_domain %}
+            {% for key, value in i.0.items %}
+                {% if value.1 == 'fail' %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>

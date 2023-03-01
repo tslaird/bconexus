@@ -1,0 +1,82 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >Description domain</p>
+        <p style="text-align: left; color: {{bco.description_domain_status.1}}" >{{ bco.description_domain_status.0 }}</p>
+        {% for key, value in bco.description_domain.items %}
+            {% if key == 'keywords' %}
+                {% for item in value %}
+                    {% if item.1 == 'fail' %}
+                        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{item.4}}" element_id_to_highlight="{{item.5}}">{{ item.3 }}</button>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if key == 'platform' %}
+                {% for item in value %}
+                    {% if item.1 == 'fail' %}
+                        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{item.4}}" element_id_to_highlight="{{item.5}}">{{ item.3 }}</button>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if key == 'xref' %}
+                {% for item in value %}
+                    {% for c_key, c_value in item.items %}
+                        {% if c_key == 'ids' %}
+                            {% for id in c_value %}
+                                {% if id.1 == 'fail'%}
+                                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{id.4}}" element_id_to_highlight="{{id.5}}">{{ id.3 }}</button>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            {% if c_value.1 == 'fail'%}
+                                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            {% if key == 'pipeline_steps'%}
+                {% for item in value %}
+                    {% for c_key, c_value in item.items %}
+                        {% if c_key == 'prerequisite' %}
+                            {% for pr in c_value %}
+                                {% for cc_key, cc_value in pr.items %}
+                                    {% if cc_key == 'uri'%}
+                                        {% for ccc_key, ccc_value in cc_value.items %}
+                                            {% if ccc_value.1 == 'fail'%}
+                                                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{ccc_value.4}}" element_id_to_highlight="{{ccc_value.5}}">{{ ccc_value.3 }}</button>
+                                            {% endif %}
+                                        {% endfor%}
+                                    {% else %}
+                                        {% if cc_value.1 == 'fail'%}
+                                            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{cc_value.4}}" element_id_to_highlight="{{cc_value.5}}">{{ cc_value.3 }}</button>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        {% elif c_key == 'input_list' %}
+                            {% for il in c_value %}
+                                {% for cc_key, cc_value in il.items %}
+                                    {% if cc_value.1 == 'fail'%}
+                                        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{cc_value.4}}" element_id_to_highlight="{{cc_value.5}}">{{ cc_value.3 }}</button>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        {% elif c_key == 'output_list' %}
+                            {% for ol in c_value %}
+                                {% for cc_key, cc_value in ol.items %}
+                                    {% if cc_value.1 == 'fail'%}
+                                        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{cc_value.4}}" element_id_to_highlight="{{cc_value.5}}">{{ cc_value.3 }}</button>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        {% else %}
+                            {% if c_value.1 == 'fail' %}
+                                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/io.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+    <table class="table table-responsive-md table-striped table-borderless">       
+        <tbody>
+        <tr>
+            <th scope="row" onclick="update_panel('input_subdomain')">
+                <div style="display: flex;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">{{io_domain.input_subdomain|length}}</div>
+                </div>
+            </th>
+            <td><button type="button" class="btn btn-link" onclick="description_modal('input_subdomain', '{{io_domain_meta.properties.input_subdomain.description}}')">input_subdomain</button></td>            
+            <td style="text-align: left;">
+                <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">[filename,</button>
+                <button type="button" class="btn btn-link" style="color: black; padding-left: 1%; padding-right: 1%; text-decoration: none;">uri,</button>
+                <button type="button" class="btn btn-link" onclick="description_modal('input_subdomain.access_time', '{{io_domain_meta.properties.input_subdomain.items.properties.uri.access_time.description}}')">access_time,</button>
+                <button type="button" class="btn btn-link" onclick="description_modal('input_subdomain.sha1_checksum', '{{io_domain_meta.properties.input_subdomain.items.properties.uri.sha1_checksum.description}}')">sha1_checksum]</button>
+            </td>     
+        </tr>
+        <tr>
+            <th scope="row" onclick="update_panel('output_subdomain')">
+                <div style="display: flex;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">{{io_domain.output_subdomain|length}}</div>
+                </div>
+            </th>
+            <td><button type="button" class="btn btn-link" onclick="description_modal('output_subdomain', '{{io_domain_meta.properties.output_subdomain.description}}')">output_subdomain</button></td>            
+            <td style="text-align: left;">
+                <button type="button" class="btn btn-link" style = "padding-right: 1%;" onclick="description_modal('output_subdomain.mediatype', '{{io_domain_meta.properties.output_subdomain.items.properties.mediatype.description}}')">[media_type,</button>
+                <button type="button" class="btn btn-link" style="color: black; padding-left: 1%; padding-right: 1%; text-decoration: none;">uri.filename,</button>
+                <button type="button" class="btn btn-link" style="color: black; padding-left: 1%; padding-right: 1%; text-decoration: none;">uri.uri,</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('output_subdomain.uri.access_time', '{{io_domain_meta.properties.output_subdomain.items.properties.uri.access_time.description}}')">uri.access_time,</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('output_subdomain.uri.sha1_checksum', '{{io_domain_meta.properties.output_subdomain.items.properties.uri.sha1_checksum.description}}')">uri.sha1_checksum]</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

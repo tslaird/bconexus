@@ -1,0 +1,47 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/description.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+        <tr>
+            <th scope="col"><button type="button" class="btn btn-link" style="color: black; text-decoration: none;">output_list.filename</button></th>
+            <th scope="col"><button type="button" class="btn btn-link" style="color: black; text-decoration: none;">output_list.uri</button></th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.output_list.items.access_time', '{{output_list_meta.access_time.description}}')">output_list.access_time</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.output_list.items.sha1_checksum', '{{output_list_meta.sha1_checksum.description}}')">output_list.sha1_checksum</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in output_list %}
+        <tr style="text-align: left;">
+            <td contenteditable='true' height="40px" key="filename" 
+                onblur="edit_array_object_value('output_list', this, '{{forloop.counter0}}', '{{step_index}}')">
+                {{ item.filename }}</td>
+            <td contenteditable='true' height="40px" key="uri" 
+                onblur="edit_array_object_value('output_list', this, '{{forloop.counter0}}', '{{step_index}}')">
+                {{ item.uri }}</td>
+            <td height="40px"> <input key="access_time" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;"
+                onchange="edit_array_object_value('output_list', this, '{{forloop.counter0}}', '{{step_index}}')"
+                value ="{{ item.access_time }}"></td>
+            <td contenteditable='true' height="40px" key="sha1_checksum" 
+                onblur="edit_array_object_value('output_list', this, '{{forloop.counter0}}', '{{step_index}}')">
+                {{ item.sha1_checksum }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button class="btn btn-outline-primary" style="padding-left:5px" uri="output_list" parentIndex="{{step_index}}" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+{% endblock %}

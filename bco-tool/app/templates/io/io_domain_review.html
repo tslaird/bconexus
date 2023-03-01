@@ -1,0 +1,64 @@
+<div>
+    <a id="vr_io_domain" style="text-align: left; color: {{bco.io_domain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#io_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+        io domain
+    </a>
+    <div class="collapse" id="io_items">
+        <div class="card card-body">
+            <a id="vr_isd" style="text-align: left; color: {{bco.io_domain.input_subdomain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#io_input_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+                input_subdomain
+            </a>
+            <div class="collapse" id="io_input_items">
+                <div class="card card-body">
+                    {% for i in bco.io_domain.input_subdomain %}
+                    <a id="vr_isd_items_{{forloop.counter0}}"style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#io_input_item_{{forloop.counter}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                        {{forloop.counter0}}
+                    </a>
+                    <div class="collapse" id="io_input_item_{{forloop.counter}}">
+                        <div class="card card-body">
+                            <a id="vr_isd_items_{{forloop.counter0}}_uri" style="text-align: left; padding-left: 10px;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#io_input_uri_items_{{forloop.counter}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                uri
+                            </a>
+                            <div class="collapse" id="io_input_uri_items_{{forloop.counter}}">
+                                <div class="card card-body">
+                                    <p id="{{i.uri.filename.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.filename.2}};" >filename : <span>{{ i.uri.filename.0 }}</span></p>
+                                    <p id="{{i.uri.uri.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.uri.2}};" >uri : <span>{{ i.uri.uri.0 }}</span></p>
+                                    <p id="{{i.uri.access_time.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.access_time.2}};" >access time : <span>{{ i.uri.access_time.0 }}</span></p>
+                                    <p id="{{i.uri.sha1_checksum.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.sha1_checksum.2}};" >sha1_checksum : <span>{{ i.uri.sha1_checksum.0 }}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <a id="vr_osd" style="text-align: left; color: {{bco.io_domain.output_subdomain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#io_output_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+                output_subdomain
+            </a>
+            <div class="collapse" id="io_output_items">
+                <div class="card card-body">
+                    {% for i in bco.io_domain.output_subdomain %}
+                    <a id="vr_osd_items_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#io_output_item_{{forloop.counter}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                        {{forloop.counter0}}
+                    </a>
+                    <div class="collapse" id="io_output_item_{{forloop.counter}}">
+                        <div class="card card-body">
+                    <p id="{{i.mediatype.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.mediatype.2}};" >mediatype : <span>{{ i.mediatype.0 }}</span></p>
+                    <a id="vr_osd_items_{{forloop.counter0}}_uri" style="text-align: left; padding-left: 10px;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#io_output_uri_items_{{forloop.counter}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                        uri
+                    </a>
+                    <div class="collapse" id="io_output_uri_items_{{forloop.counter}}">
+                        <div class="card card-body">
+                            <p id="{{i.uri.filename.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.filename.2}};" >filename : <span>{{ i.uri.filename.0 }}</span></p>
+                            <p id="{{i.uri.uri.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.uri.2}};" >uri : <span>{{ i.uri.uri.0 }}</span></p>
+                            <p id="{{i.uri.access_time.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.access_time.2}};" >access time : <span>{{ i.uri.access_time.0 }}</span></p>
+                            <p id="{{i.uri.sha1_checksum.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{i.uri.sha1_checksum.2}};" >sha1_checksum : <span>{{ i.uri.sha1_checksum.0 }}</span></p>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+                    {% endfor %}
+                </div>
+            </div>
+</div>
+    </div>
+</div>

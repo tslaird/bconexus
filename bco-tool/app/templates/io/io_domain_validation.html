@@ -1,0 +1,35 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >IO domain</p>
+        <p style="text-align: left; color: {{bco.io_domain_status.1}}" >{{ bco.io_domain_status.0 }}</p>
+        {% if bco.io_domain_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.io_domain_status.3}}" element_id_to_highlight="{{bco.io_domain_status.3}}">{{ bco.io_domain_status.2 }}</button>
+        {% endif %}
+        {% if bco.io_domain.input_subdomain_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.io_domain.input_subdomain_status.3}}" element_id_to_highlight="{{bco.io_domain.input_subdomain_status.4}}">{{ bco.io_domain.input_subdomain_status.2 }}</button>
+        {% endif %}
+
+        {% if bco.io_domain.output_subdomain_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.io_domain.output_subdomain_status.3}}" element_id_to_highlight="{{bco.io_domain.output_subdomain_status.4}}">{{ bco.io_domain.output_subdomain_status.2 }}</button>
+        {% endif %}
+        
+        {% for i in bco.io_domain.input_subdomain %}
+            {% for key, value in i.uri.items %}
+                {% if value.1 == 'fail' %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        {% for i in bco.io_domain.output_subdomain %}
+            {% if i.mediatype.1 == 'fail' %}
+                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{i.mediatype.4}}" element_id_to_highlight="{{i.mediatype.5}}">{{ i.mediatype.3 }}</button>
+            {% endif %}
+            {% for key, value in i.uri.items %}
+                {% if value.1 == 'fail' %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>

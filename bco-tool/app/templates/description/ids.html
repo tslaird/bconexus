@@ -1,0 +1,30 @@
+{% csrf_token %}
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/description.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless text-center">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+    <tr>
+        <th scope="col"><button type="button" class="btn btn-link" onclick="description_modal('xref.ids', '{{ids_meta.description}}')">ids</button></th>         
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in ids %}
+    <tr>
+        <td contenteditable='true' class="pt-3-half" step_index = "{{step_index}}" onfocus="changebackground(this)"  onblur="edit_array_value('ids', this, '{{forloop.counter0}}', '{{step_index}}')">{{ i }}</td>            
+    </tr>        
+    {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button class="btn btn-outline-primary" style="padding-left:5px" uri="ids" parentIndex="{{step_index}}" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+{% endblock %}

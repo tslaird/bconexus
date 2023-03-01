@@ -1,0 +1,167 @@
+<div>
+    <a id="vr_description_domain" style="text-align: left; color: {{bco.description_domain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#description_domain" role="link" aria-expanded="false" aria-controls="collapseExample">
+        description domain
+    </a>
+    <div class="collapse" id="description_domain">
+        <div class="card card-body">
+            {% for key, value in bco.description_domain.items %}
+                {% if key == "keywords" %}
+                <a id="vr_dd_{{key}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#keywords" role="link" aria-expanded="false" aria-controls="collapseExample">
+                    keywords
+                </a>
+                <div class="collapse" id="keywords">
+                    <div class="card card-body">
+                    {% for i in value %}
+                        <p id="{{i.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: i.2;" >{{ i.0 }}</p>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% if key == "xref" %}
+                <a id="vr_dd_{{key}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#xref" role="link" aria-expanded="false" aria-controls="collapseExample">
+                    xref
+                </a>
+                <div class="collapse" id="xref">
+                    <div class="card card-body">
+                    {% for i in value %}
+                        <a id="vr_dd_{{key}}_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#xref_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                            {{ forloop.counter0 }}
+                        </a>
+                        <div class="collapse" id="xref_{{forloop.counter0}}">
+                            <div class="card card-body">
+                                {% for key, value in i.items %}
+                                {% if key == "ids" %}
+                                <a id="vr_dd_xref_{{forloop.counter0}}_{{ids}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#xref_ids_{{forloop.parentloop.counter}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                    ids
+                                </a>
+                                <div class="collapse" id="xref_ids_{{forloop.parentloop.counter}}">
+                                    <div class="card card-body">
+                                        {% for i in value %}
+                                        <p id="{{i.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{i.2}};" >{{ i.0 }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% else %}       
+                                <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% if key == "platform" %}
+                <a id="vr_dd_{{key}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#platform" role="link" aria-expanded="false" aria-controls="collapseExample">
+                    platform
+                </a>
+                <div class="collapse" id="platform">
+                    <div class="card card-body">
+                    {% for i in value %}
+                        <p id="i.5" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: i.2;" >{{ i.0 }}</p>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% if key == "pipeline_steps" %}
+                <a id="vr_dd_{{key}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#pipeline_steps" role="link" aria-expanded="false" aria-controls="collapseExample">
+                    pipeline_steps
+                </a>
+                <div class="collapse" id="pipeline_steps">
+                    <div class="card card-body">
+                    {% for i in value %}
+                        <a id="vr_dd_pipeline_steps_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#pipeline_steps_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                            {{ forloop.counter0 }}
+                        </a>
+                        <div class="collapse" id="pipeline_steps_{{forloop.counter0}}">
+                            <div class="card card-body">
+                                {% for key, value in i.items %}
+                                {% if key == "prerequisite" %}
+                                <a id="vr_dd_pipeline_steps_{{forloop.parentloop.counter0}}_{{key}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#prerequisite" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                    prerequisite
+                                </a>
+                                <div class="collapse" id="prerequisite">
+                                    <div class="card card-body">
+                                        {% for i in value %}
+                                        <a id="vr_dd_pipeline_steps_{{forloop.parentloop.parentloop.counter0}}_{{key}}_{{forloop.counter0}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#prerequisite_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                            {{ forloop.counter0 }}
+                                        </a>
+                                        <div class="collapse" id="prerequisite_{{forloop.counter0}}">
+                                            <div class="card card-body">
+                                                {% for key, value in i.items %}
+                                                {% if key == "uri" %}
+                                                <a id="vr_dd_pipeline_steps_{{forloop.parentloop.parentloop.parentloop.counter0}}_prerequisite_{{forloop.parentloop.counter0}}_{{key}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#prerequisite_uri_{{forloop.parentloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                                    uri
+                                                </a>
+                                                <div class="collapse" id="prerequisite_uri_{{forloop.parentloop.counter0}}">
+                                                    <div class="card card-body">
+                                                        {% for key, value in value.items %}
+                                                            <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>    
+                                                {% else %}
+                                                <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% elif key == "input_list"%}
+                                <a id="vr_dd_pipeline_steps_{{forloop.parentloop.counter0}}_{{key}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#input_list" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                    input_list
+                                </a>
+                                <div class="collapse" id="input_list">
+                                    <div class="card card-body">
+                                        {% for i in value %}
+                                        <a id="vr_dd_pipeline_steps_{{forloop.parentloop.parentloop.counter0}}_input_list_{{forloop.counter0}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#input_list_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                            {{ forloop.counter0 }}
+                                        </a>
+                                        <div class="collapse" id="input_list_{{forloop.counter0}}">
+                                            <div class="card card-body">
+                                                {% for key, value in i.items %}
+                                                <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>    
+                                {% elif key == "output_list"%}
+                                <a id="vr_dd_pipeline_steps_{{forloop.parentloop.counter0}}_{{key}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#output_list" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                    output_list
+                                </a>
+                                <div class="collapse" id="output_list">
+                                    <div class="card card-body">
+                                        {% for i in value %}
+                                        <a id="vr_dd_pipeline_steps_{{forloop.parentloop.parentloop.counter0}}_output_list_{{forloop.counter0}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#output_list_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                            {{ forloop.counter0 }}
+                                        </a>
+                                        <div class="collapse" id="output_list_{{forloop.counter0}}">
+                                            <div class="card card-body">
+                                                {% for key, value in i.items %}
+                                                <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% else %}       
+                                <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+
+            {% endfor %}
+        </div>
+    </div>
+</div>

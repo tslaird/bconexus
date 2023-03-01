@@ -1,0 +1,55 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/description.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <tbody>
+        <tr>
+            <th scope="row" onclick="update_panel('keywords')">
+                <div style="display: flex;"><div class="triangle-right"></div><div style="flex: 1;">({{ description_domain.keywords|length }})</div></div>
+            </th>
+            <td><button type="button" class="btn btn-link" onclick="description_modal('keywords', '{{description_domain_meta.properties.keywords.description}}')">keywords</button></td>
+            <td style="text-align: left;"><button type="button" class="btn btn-link" onclick="description_modal('keywords.items', '{{description_domain_meta.properties.keywords.items.description}}')">[items]</button></td>
+        </tr>
+        <tr>
+            <th scope="row" onclick="update_panel('xref')">
+                <div style="display: flex;"><div class="triangle-right"></div><div style="flex: 1;">({{ description_domain.xref|length }})</div></div>
+            </th>
+            <td><button type="button" class="btn btn-link" onclick="description_modal('xref', '{{description_domain_meta.properties.xref.description}}')">xref</button></td>
+            <td style="text-align: left;"><button type="button" class="btn btn-link" style = "padding-right: 1%;" onclick="description_modal('xref.namespace', '{{description_domain_meta.properties.xref.items.properties.namespace.description}}')">[namespace,</button>
+                <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('xref.name', '{{description_domain_meta.properties.xref.items.properties.name.description}}')">name,</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('xref.ids', '{{description_domain_meta.properties.xref.items.properties.ids.description}}')">[ids],</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('xref.access_time', '{{description_domain_meta.properties.xref.items.properties.access_time.description}}')">access_time]</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" onclick="update_panel('platform')">
+                <div style="display: flex;"><div class="triangle-right"></div><div style="flex: 1;">({{ description_domain.platform|length }})</div></div>
+            </th>
+            <td><button type="button" class="btn btn-link" onclick="description_modal('platform', '{{description_domain_meta.properties.platform.description}}')">platform</button></td>
+            <td style="text-align: left;"><button type="button" class="btn btn-link" style="color: black; text-decoration: none;">[items]</button></td>
+        </tr>
+        <tr>
+            <th scope="row" onclick="update_panel('pipeline_steps')">
+                <div style="display: flex;"><div class="triangle-right"></div><div style="flex: 1;">({{ description_domain.pipeline_steps|length}})</div></div>
+            </th>
+            <td><button type="button" class="btn btn-link" onclick="description_modal('pipeline_steps', '{{description_domain_meta.properties.pipeline_steps.description}}')">pipeline_steps</button></td>
+            <td style="text-align: left;"><button type="button" class="btn btn-link" style = "padding-left: 1%;" onclick="description_modal('pipeline_steps.step_number', '{{description_domain_meta.properties.pipeline_steps.items.properties.step_number.description}}')">[step_number,</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('pipeline_steps.name', '{{description_domain_meta.properties.pipeline_steps.items.properties.name.description}}')">name,</button> 
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('pipeline_steps.description', '{{description_domain_meta.properties.pipeline_steps.items.properties.description.description}}')">description,</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('pipeline_steps.version', '{{description_domain_meta.properties.pipeline_steps.items.properties.version.description}}')">version,</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('pipeline_steps.prerequisite', '{{description_domain_meta.properties.pipeline_steps.items.properties.prerequisite.description}}')">[prerequisite],</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('pipeline_steps.input_list', '{{description_domain_meta.properties.pipeline_steps.items.properties.input_list.description}}')">[input_list],</button>
+                <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('pipeline_steps.output_list', '{{description_domain_meta.properties.pipeline_steps.items.properties.output_list.description}}')">[output_list]]</button> 
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock %}

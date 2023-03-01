@@ -1,0 +1,41 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+    
+    <div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+        <img id="imageresource" src="{% static 'images/provenance.jpg' %}" class="card-img-top">
+    </div>
+    </div>
+    <div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+    <tr> 
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('contributor.contribution', '{{provenance_domain_meta.properties.contributors.contributor.properties.contribution.description}}')">contributor.contribution</button></th>                  
+    </tr>
+    </thead>
+    <tbody>
+        {% for r in contributor_contribution %}
+        <tr>
+            <td>
+                <select id="contributor_contribution" style = "background-color:transparent; height: 100%; border-radius: 10px; text-align: left;" key='contribution' onchange="edit_array_dd_value('contributors_contribution', this, '{{forloop.counter0}}', '{{step_index}}')">
+                    <option value=''>select contribution</option>
+                    {% for s in contribution_enum %}
+                        {% if s == r %}
+                            <option value='{{s}}' selected>{{s}}</option>
+                        {% else %}
+                            <option value='{{s}}'>{{s}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>        
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button id="add_button" class="btn btn-outline-primary" style="padding-left:5px" parentIndex="{{step_index}}" uri="contributors_contribution" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+{% endblock %}

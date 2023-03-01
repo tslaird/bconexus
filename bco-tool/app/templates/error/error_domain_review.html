@@ -1,0 +1,29 @@
+<div>
+    <a id="vr_error_domain" style="text-align: left; color: {{bco.error_domain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#error_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+        error domain
+    </a>
+    <div class="collapse" id="error_items">
+        <div class="card card-body">
+            <a id="vr_emp_err" style="text-align: left; color: {{bco.error_domain.empirical_error_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#empirical_error_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+                empirical_error
+            </a>
+            <div class="collapse" id="empirical_error_items">
+                <div class="card card-body">
+                    {% for key, value in bco.error_domain.empirical_error.items %}
+                    <p id="{{value.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                    {% endfor %}
+                </div>
+            </div>
+            <a id="vr_alg_err" style="text-align: left; color: {{bco.error_domain.algorithmic_error_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#algorithmic_error_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+                algorithmic_error
+            </a>
+            <div class="collapse" id="algorithmic_error_items">
+                <div class="card card-body">
+                    {% for key, value in bco.error_domain.algorithmic_error.items %}
+                    <p id="{{value.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

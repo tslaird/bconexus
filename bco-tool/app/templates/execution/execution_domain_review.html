@@ -1,0 +1,99 @@
+<div>
+    <a id="vr_execution_domain" style="text-align: left; color: {{bco.execution_domain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#execution_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+        execution domain
+    </a>
+    <div class="collapse" id="execution_items">
+        <div class="card card-body">
+            <a id="vr_ed_script" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#script_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+                script
+            </a>
+            <div class="collapse" id="script_items">
+                <div class="card card-body">
+                    {% for i in bco.execution_domain.script %}
+                    <a id="vr_ed_script_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#script_item_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                        {{forloop.counter0}}
+                    </a>
+                    <div class="collapse" id="script_item_{{forloop.counter0}}">
+                        <div class="card card-body">
+                            {% for key, value in i.items %}
+                            <a id="vr_ed_script_{{forloop.parentloop.counter0}}_uri" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#script_item_{{forloop.counter0}}_uri" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                uri
+                            </a>
+                            <div class="collapse" id="script_item_{{forloop.counter0}}_uri">
+                                <div class="card card-body">
+                                {% for key, value in value.items %}
+                                    <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <p id="vr_ed_script_driver" style=" white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{bco.execution_domain.script_driver.2}};" >script_driver: <span>{{ bco.execution_domain.script_driver.0 }}</span></p>
+            <a id="vr_ed_software_prerequisites" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#sw_prereq_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+                software_prerequisites
+            </a>
+            <div class="collapse" id="sw_prereq_items">
+                <div class="card card-body">
+                    {% for i in bco.execution_domain.software_prerequisites %}
+                    <a id="vr_ed_software_prerequisites_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#sw_prereq_item_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                        {{forloop.counter0}}
+                    </a>
+                    <div class="collapse" id="sw_prereq_item_{{forloop.counter0}}">
+                        <div class="card card-body">
+                            {% for key, value in i.items %}
+                                {% if key == "uri" %}
+                                <a id="vr_ed_software_prerequisites_{{forloop.parentloop.counter0}}_uri" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#uri_{{forloop.parentloop.counter}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                    uri
+                                </a>
+                                <div class="collapse" id="uri_{{forloop.parentloop.counter}}">
+                                    <div class="card card-body">
+                                        {% for key, value in value.items %}
+                                            <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% else %}
+                                    <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <a id="vr_ed_external_data_endpoints" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#external_data_endpoints" role="link" aria-expanded="false" aria-controls="collapseExample">
+                external_data_endpoints
+            </a>
+            <div class="collapse" id="external_data_endpoints">
+                <div class="card card-body">
+                    {% for i in bco.execution_domain.external_data_endpoints %}
+                    <a id="vr_ed_external_data_endpoints_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#external_data_endpoint_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                        {{forloop.counter0}}
+                    </a>
+                    <div class="collapse" id="external_data_endpoint_{{forloop.counter0}}">
+                        <div class="card card-body">
+                            {% for key, value in i.items %}
+                                <p id="{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <a id="vr_ed_environment_variables" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#environment_variables" role="link" aria-expanded="false" aria-controls="collapseExample">
+                environment_variables
+            </a>
+            <div class="collapse" id="environment_variables">
+                <div class="card card-body">
+                {% for key, value in bco.execution_domain.environment_variables.items %}
+                    <p id="{{value.5}}" style="white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{key}}: <span>{{ value.0 }}</span></p>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+    
+    <div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+        <img id="imageresource" src="{% static 'images/provenance.jpg' %}" class="card-img-top">
+    </div>
+    </div>
+    <div class="col-10">
+    <table class="table table-responsive-md table-striped table-borderless">
+        <thead>
+        <tr>
+            <th scope="col"><button class="btn btn-link" style = "padding-right: 1%;" onclick="description_modal('embargo.start_time', '{{provenance_domain_meta.properties.embargo.properties.start_time.description}}')">start_time</button></th>
+            <th scope="col"><button class="btn btn-link" style = "padding-left: 1%; padding-right: 1%;" onclick="description_modal('embargo.end_time', '{{provenance_domain_meta.properties.embargo.properties.end_time.description}}')">end_time</button></th>    
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="height: 40px;">
+            <td style="padding-left: 25px;"><input key = "start_time" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;"  onchange="edit_array_object_value('embargo', this)" value="{{ embargo.start_time }}"></td>
+            <td style="padding-left: 25px;"><input key = "end_time" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;" onchange="edit_array_object_value('embargo', this)" value="{{ embargo.end_time }}"></td>
+        </tr>        
+        
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}

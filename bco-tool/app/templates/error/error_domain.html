@@ -1,0 +1,46 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/error.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+    <table class="table table-responsive-md table-striped table-borderless">       
+        <tbody>
+        <tr style="text-align: left;">
+            <th scope="row" onclick="update_panel('empirical_error')">
+                <div style="display: flex;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">{{error_domain.empirical_error.items|length}} </div>
+                </div>
+            </th>
+            <td>
+                <button type="button" class="btn btn-link" onclick="description_modal('empirical_error', '{{error_domain_meta.properties.empirical_error.description}}')">empirical_error</button>
+            </td>            
+            <td>
+                <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">[key :</button>
+                <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">value]</button>
+            </td>            
+        </tr>
+        <tr style="text-align: left;">
+            <th scope="row" onclick="update_panel('algorithmic_error')">
+                <div style="display: flex; flex-direction: row;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">{{error_domain.algorithmic_error.items|length}}</div>
+                </div>
+            </th>
+            <td>
+                <button type="button" class="btn btn-link" onclick="description_modal('algorithmic_error', '{{error_domain_meta.properties.algorithmic_error.description}}')">algorithmic_error</button>
+            </td>            
+            <td>
+                <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">[key :</button>
+                <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">value]</button>
+            </td>            
+        </tr>  
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

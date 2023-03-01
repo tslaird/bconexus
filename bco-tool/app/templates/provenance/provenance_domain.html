@@ -1,0 +1,100 @@
+{% block  bco %}
+{% load static %}
+<div class="row">
+<div class="col-2">
+
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/provenance.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+    <table class="table table-responsive-md table-striped table-borderless">        
+        <tbody>
+            <tr>
+                <th scope="row"></th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('name', '{{provenance_domain_meta.properties.name.description}}')">name</button></td>          
+                <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "name"  onblur="edit_array_object_value('provenance_domain', this)">{{ provenance.name }}</td>
+            </tr>        
+            <tr>
+                <th scope="row"></th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('version', '{{provenance_domain_meta.properties.version.description}}')">version</button></td>          
+                <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "version"  onblur="edit_array_object_value('provenance_domain', this)">{{ provenance.version }}</td>
+            </tr>        
+            <tr>
+                <th scope="row" onclick="update_panel('review')">
+                    <div style="display: flex;">
+                        <div class="triangle-right" style="flex: 1;"></div>
+                        <div style="flex: 1;">({{ provenance.review|length}})</div>
+                    </div>
+                </th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('review', '{{provenance_domain_meta.properties.review.description}}')">review</button></td>         
+                <td style="text-align: left;">
+                    <button type="button" style = "padding-right: 1%; color: black; text-decoration: none;" class="btn btn-link" >[date,</button>
+                    <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.name', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.name.description}}')">reviewer.name,</button>
+                    <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.affiliation', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.affiliation.description}}')">reviewer.affiliation,</button>
+                    <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.email', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.email.description}}')">reviewer.email,</button>
+                    <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.contribution', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.contribution.description}}')">[reviewer.contribution],</button> 
+                    <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.orcid', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.orcid.description}}')">reviewer.orcid,</button>
+                    <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.comment', '{{provenance_domain_meta.properties.review.items.properties.reviewer_comment.description}}')">reviewer_comment,</button>
+                    <button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.status', '{{provenance_domain_meta.properties.review.items.properties.status.description}}')">status]</button>
+                </td>
+            </tr>        
+            <tr>
+                <th scope="row"></th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('derived_from', '{{provenance_domain_meta.properties.derived_from.description}}')">derived_from</button></td>          
+                <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "derived_from"  onblur="edit_array_object_value('provenance_domain', this)">{{ provenance.derived_from }}</td>
+            </tr>        
+            <tr>
+                <th scope="row"></th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('obsolete_after', '{{provenance_domain_meta.properties.obsolete_after.description}}')">obsolete_after</button></td>          
+                <td style="text-align: left; padding-left: 25px;"><input key = "obsolete_after" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;" onchange="edit_array_object_value('provenance_domain', this)" value="{{ provenance.obsolete_after }}"></td>
+            </tr>        
+            <tr>
+                <th scope="row" onclick="update_panel('embargo')">
+                    <div style="display: flex;">
+                        <div class="triangle-right" style="flex: 1;"></div>
+                        <div style="flex: 1;">(1)</div>
+                    </div>
+                </th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('embargo', '{{provenance_domain_meta.properties.embargo.description}}')">embargo</button></td>          
+                <td style="text-align: left;">
+                    <button class="btn btn-link" style = "padding-right: 1%;" onclick="description_modal('embargo.start_time', '{{provenance_domain_meta.properties.embargo.properties.start_time.description}}')">[start_time,</button>
+                    <button class="btn btn-link" style = "padding-left: 1%; padding-right: 1%;" onclick="description_modal('embargo.end_time', '{{provenance_domain_meta.properties.embargo.properties.end_time.description}}')">end_time]</button>
+                </td>
+            </tr>        
+            <tr>
+                <th scope="row"></th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('created', '{{provenance_domain_meta.properties.created.description}}')">created</button></td>          
+                <td style="text-align: left; padding-left: 25px;"><input contenteditable='true' key = "created" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;" onchange="edit_array_object_value('provenance_domain', this)" value="{{ provenance.created }}"></td>
+            </tr>        
+            <tr>
+                <th scope="row"></th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('modified', '{{provenance_domain_meta.properties.modified.description}}')">modified</button></td>          
+                <td style="text-align: left; padding-left: 25px;"><input contenteditable='true' key = "modified" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;" onchange="edit_array_object_value('provenance_domain', this)" value="{{ provenance.modified }}"></td>
+            </tr>        
+            <tr>
+                <th scope="row" onclick="update_panel('contributors')">
+                    <div style="display: flex;">
+                        <div class="triangle-right" style="flex: 1;"></div>
+                        <div style="flex: 1;">({{ provenance.contributors|length}})</div>
+                    </div>
+                </th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('contributors', '{{provenance_domain_meta.properties.contributors.description}}')">contributors</button></td>          
+                <td style="text-align: left;">
+                    <button class="btn btn-link" style = "padding-right: 1%;" onclick="description_modal('contributor.name', '{{provenance_domain_meta.properties.contributors.contributor.properties.name.description}}')">[contributor.name,</button> 
+                    <button class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('contributor.affiliation', '{{provenance_domain_meta.properties.contributors.contributor.properties.affiliation.description}}')">contributor.affiliation,</button> 
+                    <button class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('contributor.email', '{{provenance_domain_meta.properties.contributors.contributor.properties.email.description}}')">contributor.email,</button>
+                    <button class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('contributor.contribution', '{{provenance_domain_meta.properties.contributors.contributor.properties.contribution.description}}')">[contributor.contribution],</button>
+                    <button class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('contributor.orcid', '{{provenance_domain_meta.properties.contributors.contributor.properties.orcid.description}}')">contributor.orcid]</button> 
+                </td>
+            </tr>        
+            <tr>
+                <th scope="row"></th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('license', '{{provenance_domain_meta.properties.license.description}}')">license</button></td>          
+                <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "license"  onblur="edit_array_object_value('provenance_domain', this)">{{ provenance.license }}</td>
+            </tr>        
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

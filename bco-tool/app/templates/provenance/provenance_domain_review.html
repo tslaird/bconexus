@@ -1,0 +1,108 @@
+<div>
+    <a id="vr_provenance_domain" style="text-align: left; color: {{bco.provenance_domain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#provenance_domain" role="link" aria-expanded="false" aria-controls="collapseExample">
+        provenance domain
+    </a>
+    <div class="collapse" id="provenance_domain">
+        <div class="card card-body">
+            {% for key, value in bco.provenance_domain.items %}
+                {% if key == "review" %}
+                <a id="vr_po_{{key}}" style="text-align: left; color: {{bco.provenance_domain.provenance_domain_review_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#prov_review" role="link" aria-expanded="false" aria-controls="collapseExample">
+                    review
+                </a>
+                <div class="collapse" id="prov_review">
+                    <div class="card card-body">
+                    {% for i in value %}
+                        <a id="vr_po_{{key}}_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#prov_review_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                            {{ forloop.counter0 }}
+                        </a>
+                        <div class="collapse" id="prov_review_{{forloop.counter0}}">
+                            <div class="card card-body">
+                                {% for c_key, c_value in i.items %}
+                                    {% if c_key == "reviewer" %}
+                                    <a id ="vr_po_{{key}}_{{forloop.parentloop.counter0}}_{{c_key}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#prov_review_reviewer_{{forloop.parentloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                        reviewer
+                                    </a>
+                                    <div class="collapse" id="prov_review_reviewer_{{forloop.parentloop.counter0}}">
+                                        <div class="card card-body">
+                                            {% for cc_key, cc_value in c_value.items %}
+                                                {% if cc_key == "contribution" %}
+                                                <a id="vr_po_{{key}}_{{forloop.parentloop.parentloop.counter0}}_{{c_key}}_{{cc_key}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#prov_review_reviewer_{{forloop.parentloop.parentloop.counter0}}_contribution" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                                    contribution
+                                                </a>
+                                                <div class="collapse" id="prov_review_reviewer_{{forloop.parentloop.parentloop.counter0}}_contribution">
+                                                    <div class="card card-body">
+                                                        {% for contrib in cc_value %}
+                                                            <p id="{{contrib.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color:{{contrib.2}}" >{{contrib.0}}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                {% else %}
+                                                    <p id="{{cc_value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color:{{cc_value.2}}" >{{ cc_key }}: <span>{{cc_value.0}}</span></p>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% else %}       
+                                    <p id={{c_value.5}} style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color:{{c_value.2}}" >{{ c_key }}: <span>{{c_value.0}}</span></p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                
+                {% elif key == "embargo" %}
+                <a id="vr_po_{{key}}" style="text-align: left; color: {{bco.provenance_domain.provenance_domain_embargo_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#embargo" role="link" aria-expanded="false" aria-controls="collapseExample">
+                    embargo
+                </a>
+                <div class="collapse" id="embargo">
+                    <div class="card card-body">
+                    {% for key,value in value.items %}
+                        <p id={{value.5}} style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{value.2}};" >{{ key }}: <span>{{value.0}}</span></p>
+                    {% endfor %}
+                    </div>
+                </div>
+                
+                {% elif key == "contributors" %}
+                <a id="vr_po_{{key}}" style="text-align: left; color: {{bco.provenance_domain.provenance_domain_contributors_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#contributors" role="link" aria-expanded="false" aria-controls="collapseExample">
+                    contributors
+                </a>
+                <div class="collapse" id="contributors">
+                    <div class="card card-body">
+                    {% for i in value %}
+                        <a id="vr_po_{{key}}_{{forloop.counter0}}" style="text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#contributors_{{forloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                            {{ forloop.counter0 }}
+                        </a>
+                        <div class="collapse" id="contributors_{{forloop.counter0}}">
+                            <div class="card card-body">
+                                {% for c_key, c_value in i.items %}
+                                {% if c_key == "contribution" %}
+                                <a id="vr_po_{{key}}_{{forloop.parentloop.counter0}}_{{c_key}}" style="padding-left: 10px; text-align: left;" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#contribution_{{forloop.parentloop.counter0}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                                    contribution
+                                </a>
+                                <div class="collapse" id="contribution_{{forloop.parentloop.counter0}}">
+                                    <div class="card card-body">
+                                        {% for i in c_value %}
+                                            <p id="{{i.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{i.2}}" >{{ i.0 }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% else %}       
+                                    <p id="{{c_value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color: {{c_value.2}};" >{{ c_key }}: <span>{{c_value.0}}</span></p>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% else  %}
+                    {% if key != "provenance_domain_review_status" and key != "provenance_domain_embargo_status" and key != "provenance_domain_contributors_status" %}
+                        <p id = "{{value.5}}" style="padding-left: 10px; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; text-decoration: underline dotted gray; color:{{value.2}}" >{{ key }}: <span>{{value.0}}</span></p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+{% block  bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/execution.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+    <table class="table table-responsive-md table-striped table-borderless">        
+        <tbody>
+            <tr>
+                <th scope="row" onclick="update_panel('script')">
+                    <div style="display: flex;">
+                        <div class="triangle-right" style="flex: 1;" ></div>
+                        <div style="flex: 1;">({{ execution.script|length}})</div>
+                    </div>
+                </th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('script', '{{execution_domain_meta.properties.script.description}}')">script</button></td>
+                <td style="text-align: left;">
+                    <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">[uri.filename,</button>
+                    <button type="button" class="btn btn-link" style="color: black; padding-left: 1%; padding-right: 1%; text-decoration: none;">uri.uri,</button>
+                    <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('script.access_time', '{{execution_domain_meta.properties.script.items.properties.uri.access_time.description}}')">uri.access_time,</button>
+                    <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('script.sha1_checksum', '{{execution_domain_meta.properties.script.items.properties.uri.sha1_checksum.description}}')">uri.sha1_checksum]</button>
+                </td>
+            </tr>        
+            <tr>
+                <th scope="row"></th>         
+                <td><button type="button" class="btn btn-link" onclick="description_modal('script_driver', '{{execution_domain_meta.properties.script_driver.description}}')">script_driver</button></td>          
+                <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "script_driver"  onblur="edit_array_object_value('execution_domain', this)">{{ execution.script_driver }}</td>
+            </tr>        
+            <tr>
+                <th scope="row" onclick="update_panel('software_prerequisites')">
+                    <div style="display: flex;">
+                        <div class="triangle-right" style="flex: 1;"></div>
+                        <div style="flex: 1;">({{ execution.software_prerequisites|length}})</div>
+                    </div>
+                </th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('script_driver', '{{execution_domain_meta.properties.software_prerequisites.description}}')">software_prerequisites</button></td>          
+                <td style="text-align: left;">
+                    <button type="button" class="btn btn-link" style="padding-right: 1%;" onclick="description_modal('software_prerequisites.name', '{{execution_domain_meta.properties.software_prerequisites.items.properties.name.description}}')">[name,</button>
+                    <button type="button" class="btn btn-link" style="padding-right: 1%;" onclick="description_modal('software_prerequisites.version', '{{execution_domain_meta.properties.software_prerequisites.items.properties.version.description}}')">version,</button>
+                    <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">uri.filename,</button>
+                    <button type="button" class="btn btn-link" style="color: black; padding-left: 1%; padding-right: 1%; text-decoration: none;">uri.uri,</button>
+                    <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('software_prerequisites.uri.access_time', '{{execution_domain_meta.properties.software_prerequisites.items.properties.uri.access_time.description}}')">uri.access_time,</button>
+                    <button type="button" class="btn btn-link" style = "padding-right: 1%; padding-left: 1%;" onclick="description_modal('software_prerequisites.uri.sha1_checksum', '{{execution_domain_meta.properties.software_prerequisites.items.properties.uri.sha1_checksum.description}}')">uri.sha1_checksum]</button>
+                </td>
+            </tr>        
+            <tr>
+                <th scope="row" onclick="update_panel('external_data_endpoints')">
+                    <div style="display: flex;">
+                        <div class="triangle-right" style="flex: 1;"></div>
+                        <div style="flex: 1;">({{ execution.external_data_endpoints|length}})</div>
+                    </div>
+                </th>            
+                <td><button type="button" class="btn btn-link" onclick="description_modal('external_data_endpoints', '{{execution_domain_meta.properties.external_data_endpoints.description}}')">external_data_endpoints</button></td>          
+                <td style="text-align: left;">
+                    <button type="button" class="btn btn-link" style="padding-right: 1%;" onclick="description_modal('external_data_endpoints.name', '{{execution_domain_meta.properties.external_data_endpoints.items.properties.name.description}}')">[name,</button>
+                    <button type="button" class="btn btn-link" style="padding-right: 1%; padding-left: 1%;;" onclick="description_modal('external_data_endpoints.url', '{{execution_domain_meta.properties.external_data_endpoints.items.properties.url.description}}')">url]</button>
+                </td>
+            </tr>        
+            <tr>
+                <th scope="row" onclick="update_panel('environment_variables')">
+                    <div style="display: flex;">
+                        <div class="triangle-right" style="flex: 1;"></div>
+                        <div style="flex: 1;">({{ execution.environment_variables.items|length}})</div>
+                    </div>
+                </th>                     
+                <td><button type="button" class="btn btn-link" onclick="description_modal('environment_variables', '{{execution_domain_meta.properties.environment_variables.description}}')">environment_variables</button></td>          
+                <td style="text-align: left;">
+                    <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">[key :</button>
+                    <button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">value]</button>
+                </td>
+            </tr>                    
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock %}

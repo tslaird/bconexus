@@ -1,0 +1,14 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >Usability domain</p>
+        <p style="text-align: left; color: {{bco.usability_domain_status.1}}" >{{ bco.usability_domain_status.0 }}</p>
+        {% if bco.usability_domain_status.2 %}
+        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.usability_domain_status.3}}" element_id_to_highlight="{{bco.usability_domain_status.3}}">{{ bco.usability_domain_status.2 }}</button>
+        {% endif %}
+        {% for item in bco.usability_domain %}
+            {% if item.1 == 'fail' %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{item.4}}" element_id_to_highlight="{{item.5}}">{{ item.3 }}</button>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

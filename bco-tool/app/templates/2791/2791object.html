@@ -1,0 +1,28 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/obj_2791.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <tbody>
+    <tr>
+        <th style="width:25%;"><button type="button" class="btn btn-link" onclick="description_modal('object_id', '{{bco_meta.object_id.description}}')">object_id</button></th>            
+        <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "object_id"  onblur="edit_array_object_value('objectinfo', this)">{{ object_id }}</td>          
+    </tr>  
+    <tr>
+        <th style="width:25%;"><button type="button" class="btn btn-link" onclick="description_modal('spec_version', '{{bco_meta.spec_version.description}}')">spec_version</button></th>            
+        <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "spec_version"  onblur="edit_array_object_value('objectinfo', this)">{{ spec_version }}</td>                  
+    </tr>  
+    <tr>
+        <th style="width:25%;"><button type="button" class="btn btn-link" onclick="description_modal('etag', '{{bco_meta.etag.description}}')">etag</button></th>            
+        <td style="text-align: left; padding-left: 25px;" contenteditable='true' key = "etag"  onblur="edit_array_object_value('objectinfo', this)">{{ etag }}</td>          
+    </tr>  
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock %}

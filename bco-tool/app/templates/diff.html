@@ -1,0 +1,61 @@
+{% load static %}
+
+<script src="{% static 'scripts.js' %}"></script>
+
+{% block compare %}
+
+
+<div class="container-fluid" id="compare-screen">
+    <br></br>
+    <button id='upload_2nd_bco_button' class="btn btn-outline-info btn-uploader" style="width: 250px;" type="button"> Upload file to compare </button>
+    <br></br>
+
+    {% if first_comparison %}
+
+        <div> Please upload second BCO file for comparison </div>
+
+    {% else %}
+
+        <h4> JSON Compare </h4>
+
+        <div class="header" style="width: 50%; float: left;">
+            <span class="file-name-wrapper">
+                <svg aria-hidden="true" class="icon" height="15" version="1.1" viewBox="0 0 12 16" width="15">
+                    <path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path>
+                </svg>
+                <span style="color: dimgrey; font-weight: bold; font-size: larger;"> Currently in Editor BCO </span>
+        </div>
+
+        <div class="header" style="width: 50%; float: right;">
+            <span class="file-name-wrapper">
+                <svg aria-hidden="true" class="icon" height="15" version="1.1" viewBox="0 0 12 16" width="15">
+                    <path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path>
+                </svg>
+                <span style="color: dimgrey; font-weight: bold; font-size: larger;"> {{bco_comparison_file}} </span>
+        </div>
+
+        <div id="compare-panes"></div>
+    {% endif %}
+    {% include "upload_2nd_bco.html" %}
+
+</div>
+
+{% for message in messages %}
+<script>
+    alert(`{{ message|safe }}`)
+</script>
+{% endfor %}
+
+<script>
+
+    var diffString = `{{ diff_str|safe }}`;
+    if (diffString) {
+        showDiff(diffString);
+    }
+    else {
+        showNoDiff();
+    }
+
+</script>
+
+{% endblock %}

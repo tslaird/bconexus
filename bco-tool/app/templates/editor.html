@@ -1,0 +1,29 @@
+{% block editor %}
+<div class="container-fluid" id="editor_screen" style="text-align: left;">
+    <div class="row">
+    <div class="col-0.5">
+    <br>
+    {% if is_valid %}
+        <i class="bi bi-check-circle" style="color: green; font-size: 40px;"></i>
+    {% else %}
+        <i class="bi bi bi-exclamation-triangle" style="color: red; font-size: 40px;"></i>
+    {% endif %}
+    </div>
+    <div class="col">
+    <h4>JSON Editor</h4>
+    <textarea name="editor" id="json_editor_text_box" style="width: 50vw; height: 70vh;" disabled>{{bco}}</textarea>
+    </div>
+    <div class="col" style="width: 10vw;">
+    <br></br>
+    <br></br>
+    <button id='edit_button' class="btn btn-outline-primary" style="width: 100px;" type="button" onclick="enable_editor(this)">Edit</button>
+    <br></br>
+    <button id='beautify_button' class="btn btn-outline-info" style="width: 100px;" type="button" onclick="beautify()">Beautify</button>
+    <br></br>
+    <button id='save_button' class="btn btn-outline-success" style="width: 100px;" type="button" onclick="saveBcoEditor(this)" disabled>Save</button>
+    <br></br>
+    <button id='validate_button' class="btn btn-outline-primary" style="width: 100px;" type="button" onclick="validateBcoEditor(this)">Validate</button>
+    </div>
+    </div>
+</div>
+{% endblock %}

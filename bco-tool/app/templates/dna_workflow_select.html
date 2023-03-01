@@ -1,0 +1,41 @@
+
+{% block file_uploader %}
+
+    {% csrf_token %}
+    <div id='dnanexus_container' class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel" style="float: left;">Upload Your File</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                    <input type="text" id="dna-token" name="dnaaccesstoken" placeholder="DNAnexus access token">
+                    <button type="submit" class="btn" onclick="get_dna_projects()">Get Projects</button>
+                    {% if projects %}
+                    <div id="project-selector" style="visibility: hidden;">
+                    <span>Select Project:</span>
+                    <span>
+                    <select id="dna-projects" name='dna-projects'>
+                        {% for p in projects %}
+                        <option value="{{p.id}}">{{p.name}}</option>
+                        {% endfor %}
+                    </select>
+                    </span>
+                    </div>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary">Load</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

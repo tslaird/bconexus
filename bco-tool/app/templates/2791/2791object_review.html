@@ -1,0 +1,18 @@
+<div>
+    <a id="vr_2791" style="text-align: left; color: {{bco.object_2791_status.1}};" class="expandcollapse" data-before="+" data-toggle="collapse" href="#object_2791" role="link" aria-expanded="false" aria-controls="collapseExample" onclick="updatestate(this)">
+        2791 Object
+    </a>
+    <div class="collapse" id="object_2791">
+        <div class="card card-body">
+            {% for key, value in bco.items %}
+                {% if key == "object_id" %}
+                    <p id="{{value.5}}" style="padding-left: 10px; height: 25px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{value.2}};" >{{key}}: {{ value.0 }}</p>
+                {% elif key == "spec_version"%}
+                    <p id="{{value.5}}" style="padding-left: 10px; height: 25px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{value.2}};" >{{key}}: {{ value.0 }}</p>
+                {% elif key == "etag" %}
+                    <p id="{{value.5}}" style="padding-left: 10px; height: 25px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{value.2}};" >{{key}}: {{ value.0 }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+
+{% block file_uploader %}
+    {% csrf_token %}
+
+    <div id='file_uploader_container' class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:navy;">
+                    <h4 class="modal-title" id="myModalLabel" style="float: left; color: white;">Upload Your File</h4>
+                    <button type="button" class="close" data-dismiss="modal" style="color: white;" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div style="display: flex; justify-content: flex-start; padding: 1px;">
+                        <label for="file_type_id">Select Workflow Type:</label>
+                        <span style="padding-left: 10px;">
+                            <select id="file_type_id" name='file_type_name' style="width: 250px; border-radius: 10px;" onchange="change_editor_file_type()">
+                                <option value='WDL'>WDL</option>
+                                <option value='CWL'>CWL</option>
+                                <option value='BCO'>BCO</option>
+                                <option value='DNAnexus Workflow'>DNAnexus Workflow</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; padding: 1px; width: auto; height: auto;" id="file_selector_div" style="visibility: visible;">
+                        <label for="file_input">Select Workflow File:</label>
+                        <input type="file" id="file_input" name="upload_file" style="float: right; padding-left: 20px;" accept=".wdl">
+                    </div>
+                    <div id="dna_project_div" style="visibility: visible;">
+                        <div style="display: flex; width: auto; padding: 10px; justify-content: flex-start;">
+                            <input type="text" id="dna-token" style="margin-right: 10px; visibility: hidden; width: 200px; border-radius: 10px;" name="dnaaccesstoken" placeholder="DNAnexus access token">
+                            <button type="submit" class="btn btn-primary" style="border-radius: 10px;" onclick="get_dna_projects()">Get Projects</button>
+                        </div>
+                        <div id="dna_project_selector_div" style="padding: 2px; visibility: visible; display: flex; justify-content: flex-start;">
+                            <label for="dna-projects">Select Project:</label>
+                            <span style="padding-left: 30px;">
+                                <select id="dna-projects" name='dna-projects' style="width: 250px; border-radius: 10px;" onchange="get_project_workflows()">
+                                    <option></option>
+                                </select>
+                            </span>
+                        </div>
+                        <div id="dna_workflow_selector_div" style="padding: 2px; visibility: visible; display: flex; justify-content: flex-start;">
+                            <label for="dna-workflows">Select Workflow:</label>
+                            <span style="padding-left: 14px;">
+                            <select id="dna-workflows" name='dna-workflows' style="width: 250px; border-radius: 10px;">
+                                <option></option>
+                            </select>
+                            </span>
+                        </div>
+                        <div id="dna_analysis_selector_div" style="padding: 2px; visibility: visible; display: flex; justify-content: flex-start;">
+                            <label for="dna-analysis">Select Analysis:</label>
+                            <span style="padding-left: 22px;">
+                                <select id="dna-analysis" name='dna-analysis' style="width: 250px; border-radius: 10px;">
+                                    <option></option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="reset" type="button" class="btn btn-primary" style="background-color:red; border-radius: 10px;">Reset</button>
+                    <button id="update" type="submit" class="btn btn-primary" style="background-color: green; border-radius: 10px;">Update</button>
+                    <button id="load" type="button" class="btn btn-primary" style="border-radius: 10px;">Load</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

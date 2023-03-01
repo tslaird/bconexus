@@ -1,0 +1,26 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >Error domain</p>
+        <p style="text-align: left; color: {{bco.error_domain_status.1}}" >{{ bco.error_domain_status.0 }}</p>
+        {% if bco.error_domain_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.error_domain_status.3}}" element_id_to_highlight="{{bco.error_domain_status.3}}">{{ bco.error_domain_status.2 }}</button>
+        {% endif %}
+        {% if bco.error_domain.empirical_error_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.error_domain.empirical_error_status.3}}" element_id_to_highlight="{{bco.error_domain.empirical_error_status.4}}">{{ bco.error_domain.empirical_error_status.2 }}</button>
+        {% endif %}
+        {% if bco.error_domain.algorithmic_error_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.error_domain.algorithmic_error_status.3}}" element_id_to_highlight="{{bco.error_domain.algorithmic_error_status.4}}">{{ bco.error_domain.algorithmic_error_status.2 }}</button>
+        {% endif %}
+
+        {% for key, value in bco.error_domain.empirical_error.items %}
+            {% if value.1 == 'fail' %}
+                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+            {% endif %}
+        {% endfor %}
+        {% for key, value in bco.error_domain.algorithmic_error.items %}
+            {% if value.1 == 'fail' %}
+                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

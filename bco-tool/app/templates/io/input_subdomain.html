@@ -1,0 +1,36 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/io.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+    <tr>
+        <th scope="col"><button type="button" class="btn btn-link" style="color: black; padding-right: 1%; text-decoration: none;">uri.filename</button></th>
+        <th scope="col"><button type="button" class="btn btn-link" style="color: black; padding-left: 1%; padding-right: 1%; text-decoration: none;">uri.uri</button></th>   
+        <th scope="col"><button type="button" class="btn btn-link" onclick="description_modal('input_subdomain.access_time', '{{io_domain_meta.properties.input_subdomain.items.properties.uri.access_time.description}}')">uri.access_time</button></th>
+        <th scope="col"><button type="button" class="btn btn-link" onclick="description_modal('input_subdomain.sha1_checksum', '{{io_domain_meta.properties.input_subdomain.items.properties.uri.sha1_checksum.description}}')">uri.sha1_checksum</button></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in input_subdomain %}
+    <tr>
+        <td contenteditable='true' height="40px"  key="uri.filename" onblur="edit_array_object_value('input_subdomain', this, '{{forloop.counter0}}')" >{{ i.uri.filename }}</td> 
+        <td contenteditable='true' height="40px"  key="uri.uri" onblur="edit_array_object_value('input_subdomain', this, '{{forloop.counter0}}')">{{ i.uri.uri }}</td>
+        <td height="40px"><input key="uri.access_time"  type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;" onchange="edit_array_object_value('input_subdomain', this, '{{forloop.counter0}}')" value = "{{ i.uri.access_time }}"></td>
+        <td contenteditable='true' height="40px"  key="uri.sha1_checksum" onblur="edit_array_object_value('input_subdomain', this, '{{forloop.counter0}}')">{{ i.uri.sha1_checksum }}</td>           
+    </tr>        
+    {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button id="add_button" class="btn btn-outline-primary" style="padding-left:5px" uri="input_subdomain" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+
+{% endblock %}

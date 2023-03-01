@@ -1,0 +1,35 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+<div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px; border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/parametric.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+    <tr >
+        <th scope="col"><button type="button"  class="btn btn-link" onclick="description_modal('param', '{{parametric_domain_meta.items.properties.param.description}}')">param</button></th>
+        <th scope="col"><button type="button"  class="btn btn-link" onclick="description_modal('value', '{{parametric_domain_meta.items.properties.value.description}}')">value</button></th>
+        <th scope="col"><button type="button"  class="btn btn-link" onclick="description_modal('step',  '{{parametric_domain_meta.items.properties.step.description}}')">step</button></th>                 
+    </tr>
+    </thead>
+    <tbody>
+    {% for x in parameters %}
+    <tr>
+        <td contenteditable='true' class="pt-3-half" height="40px"  key="param" onblur="edit_array_object_value('parametric_domain', this, '{{forloop.counter0}}')" >{{ x.param }}</td>
+        <td contenteditable='true' class="pt-3-half" height="40px"  key="value" onblur="edit_array_object_value('parametric_domain', this, '{{forloop.counter0}}')" >{{ x.value }}</td>
+        <td contenteditable='true' class="pt-3-half" height="40px"  key="step" onblur="edit_array_object_value('parametric_domain', this, '{{forloop.counter0}}')" >{{ x.step }}</td>            
+    </tr>        
+    {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button id="add_button" class="btn btn-outline-primary" style="padding-left:5px" uri="parametric_domain" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

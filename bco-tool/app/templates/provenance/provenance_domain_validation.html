@@ -1,0 +1,63 @@
+<div>
+    <div>
+        <p style="text-align: left; font-weight: bold; text-decoration: underline solid black;" >Provenance domain</p>
+        <p style="text-align: left; color: {{bco.provenance_domain_status.1}}" >{{ bco.provenance_domain_status.0 }}</p>
+        {% if bco.provenance_domain_status.2 %}
+            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.provenance_domain_status.3}}" element_id_to_highlight="{{bco.provenance_domain_status.3}}">{{ bco.provenance_domain_status.2 }}</button>
+        {% endif %}
+        {% for key, value in bco.provenance_domain.items %}
+            {% if value.1 == 'fail' %}
+                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+            {% endif %}
+            {% if key == "review" %}
+                {% for item in value %}
+                    {% for key, value in item.items %}
+                        {% if value.1 == 'fail' %}
+                            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{value.4}}" element_id_to_highlight="{{value.5}}">{{ value.3 }}</button>
+                        {% endif %}
+                        {% if key == "reviewer" %}
+                                {% for c_key, c_value in value.items %}
+                                    {% if c_value.1 == 'fail' %}
+                                        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>
+                                    {% endif %}
+                                    {% if c_key == 'contribution' %}
+                                        {% for contrib in c_value %}
+                                            {% if contrib.1 == 'fail' %}
+                                                <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{contrib.4}}" element_id_to_highlight="{{contrib.5}}">{{ contrib.3 }}</button>                            
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            {% if key == "embargo" %}
+                {% for c_key, c_value in value.items %}
+                    {% if c_value.1 == 'fail' %}
+                        <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>
+                    {% endif %} 
+                {% endfor %}
+            {% endif %}
+            {% if key == 'contributors' %}
+                {% if bco.provenance_domain.provenance_domain_contributors_status.2 %}
+                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{bco.provenance_domain.provenance_domain_contributors_status.3}}" element_id_to_highlight="{{bco.provenance_domain.provenance_domain_contributors_status.4}}">{{ bco.provenance_domain.provenance_domain_contributors_status.2 }}</button>
+                {% endif %}
+                {% for item in value %}
+                    {% for c_key, c_value in item.items %}
+                        {% if c_value.1 == 'fail' %}
+                            <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{c_value.4}}" element_id_to_highlight="{{c_value.5}}">{{ c_value.3 }}</button>
+                        {% endif %}
+                        {% if c_key == 'contribution' %}
+                            {% for contrib in c_value %}
+                                {% if contrib.1 == 'fail' %}
+                                    <button type="button" class="btn btn-link" onclick="expandNodes(this)" nodes_to_expand="{{contrib.4}}" element_id_to_highlight="{{contrib.5}}">{{ contrib.3 }}</button>                            
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

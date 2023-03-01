@@ -1,0 +1,121 @@
+{
+    "object_id": "",
+    "spec_version": "",
+    "etag": "",
+    "provenance_domain": {
+        "name": "",
+        "version": "",
+        "review": [
+            {
+                "date": "",
+                "reviewer": {
+                    "name": "",
+                    "affiliation": "",
+                    "email": "",
+                    "contribution": [],
+                    "orcid": ""
+                },
+                "reviewer_comment": "",
+                "status": ""
+            }
+        ],
+        "derived_from": "",
+        "obsolete_after": "",
+        "embargo": {
+            "start_time": "",
+            "end_time": ""
+        },
+        "created": "",
+        "modified": "",
+        "contributors": [
+            {
+                "name": "",
+                "affiliation": "",
+                "email": "",
+                "contribution": [],
+                "orcid": ""
+            }
+        ],
+        "license": ""
+    },
+    "description_domain": {
+        "keywords": [],
+        "xref": [
+            {
+                "namespace": "",
+                "name": "",
+                "ids": [],
+                "access_time": ""
+            }
+        ],
+        "platform": [],
+        "pipeline_steps": []
+    },
+    "execution_domain": {
+        "script": [
+            {
+                "uri": {
+                    "filename": "",
+                    "uri": "",
+                    "access_time": "",
+                    "sha1_checksum": ""
+                }
+            }
+        ],
+        "script_driver": "",
+        "software_prerequisites": [
+            {
+                "name": "",
+                "version": "",
+                "uri": {
+                    "filename": "",
+                    "uri": "",
+                    "access_time": "",
+                    "sha1_checksum": ""
+                }
+            }
+        ],
+        "external_data_endpoints": [
+            {
+                "name": "",
+                "url": ""
+            }
+        ],
+        "environment_variables": {}
+    },
+    "io_domain": {
+        "input_subdomain": [
+            {
+                "uri": {
+                    "filename": "",
+                    "uri": "",
+                    "access_time": "",
+                    "sha1_checksum": ""
+                }
+            }
+        ],
+        "output_subdomain": [
+            {
+                "mediatype": "",
+                "uri": {
+                    "filename": "",
+                    "uri": "",
+                    "access_time": "",
+                    "sha1_checksum": ""
+                }
+            }
+        ]
+    },
+    "error_domain": {
+        "empirical_error": {},
+        "algorithmic_error": {}
+    },
+    "parametric_domain": [
+        {
+            "param": "",
+            "value": "",
+            "step": ""
+        }
+    ],
+    "usability_domain": []
+}

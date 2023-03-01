@@ -1,0 +1,21 @@
+<div>
+    <a id="vr_parametric_domain" style="text-align: left; color: {{bco.parametric_domain_status.1}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#parametric_items" role="link" aria-expanded="false" aria-controls="collapseExample">
+        parametric domain
+    </a>
+    <div class="collapse" id="parametric_items">
+        <div class="card card-body">
+            {% for i in bco.parametric_domain %}
+            <a id="{{i.5}}" style="text-align: left; color: {{i.2}};" class="expandcollapse" data-before="+" onclick="updatestate(this)" data-toggle="collapse" href="#parametric_item_{{forloop.counter}}" role="link" aria-expanded="false" aria-controls="collapseExample">
+                {{ forloop.counter0 }}
+            </a>
+            <div class="collapse" id="parametric_item_{{forloop.counter}}">
+                <div class="card card-body">
+                    {% for key, value in i.0.items %}
+                    <p id="{{value.5}}" style="padding-left: 10px; border-bottom-width: 1px; border-bottom-style: solid; white-space: nowrap; overflow: hidden; text-align: left; text-overflow: ellipsis; color: {{value.2}};" >{{key}} : <span>{{ value.0 }}</span></p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

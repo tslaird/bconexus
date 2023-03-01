@@ -1,0 +1,60 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+    
+    <div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+        <img id="imageresource" src="{% static 'images/provenance.jpg' %}" class="card-img-top">
+    </div>
+    </div>
+    <div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+    <tr>
+        <th scope="col"><button type="button" style = "padding-right: 1%; color: black; text-decoration: none;" class="btn btn-link" >date</button></th>
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.name', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.name.description}}')">reviewer.name</button></th>
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.affiliation', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.affiliation.description}}')">reviewer.affiliation</button></th>            
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.email', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.email.description}}')">reviewer.email</button></th>            
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.contribution', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.contribution.description}}')">reviewer.contribution</button></th>            
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.reviewer.orcid', '{{provenance_domain_meta.properties.review.items.properties.reviewer.properties.orcid.description}}')">reviewer.orcid</button></th>
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.comment', '{{provenance_domain_meta.properties.review.items.properties.reviewer_comment.description}}')">reviewer_comment</button></th>
+        <th scope="col"><button type="button" style = "padding-right: 1%; padding-left: 1%;" class="btn btn-link" onclick="description_modal('review.status', '{{provenance_domain_meta.properties.review.items.properties.status.description}}')">status</button></th>                    
+    </tr>
+    </thead>
+    <tbody>
+    {% for r in reviews %}
+    <tr>
+        <td height="40px"><input key = "date" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;" onchange="edit_array_object_value('review', this, '{{forloop.counter0}}')" value="{{ r.date }}"></td>            
+        <td contenteditable='true' key = "reviewer.name" height="40px"  onblur="edit_array_object_value('review', this, '{{forloop.counter0}}')">{{ r.reviewer.name }}</td>          
+        <td contenteditable='true' key = "reviewer.affiliation" height="40px"  onblur="edit_array_object_value('review', this, '{{forloop.counter0}}')">{{ r.reviewer.affiliation }}</td>
+        <td contenteditable='true' key = "reviewer.email" height="40px"  onblur="edit_array_object_value('review', this, '{{forloop.counter0}}')">{{ r.reviewer.email }}</td>          
+        <td onclick="update_panel('review_contribution', '?step_index={{ forloop.counter0 }}', 'reviewer.name: {{r.reviewer.name}}')">
+            <div style="display: flex;">
+                <div class="triangle-right" style="flex: 1;"></div>
+                <div style="flex: 1;">{{ r.reviewer.contribution|length }}</div>
+            </div>
+        </td>
+        <td contenteditable='true' key = "reviewer.orcid" height="40px"  onblur="edit_array_object_value('review', this, '{{forloop.counter0}}')">{{ r.reviewer.orcid }}</td>          
+        <td contenteditable='true' key = "reviewer_comment" height="40px"  onblur="edit_array_object_value('review', this, '{{forloop.counter0}}')">{{ r.reviewer_comment }}</td>
+        <td key = "status" height="40px">
+            <select id="review_status" style = "background-color: transparent; height: 100%; border-radius: 10px; text-align: left;" key='status' onchange="edit_array_object_dd_value('review', this, '{{forloop.counter0}}')">
+                <option value=''>select status</option>
+                {% for s in status_enum %}
+                    {% if s == r.status %}
+                        <option value='{{s}}' selected>{{s}}</option>
+                    {% else %}
+                        <option value='{{s}}'>{{s}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </td>            
+    </tr>        
+    {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button id="add_button" class="btn btn-outline-primary" style="padding-left:5px" uri="review" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static %}
+<script src="{% static 'scripts.js' %}"></script> 
+{% block bco %}
+<div>    
+        <div id='main'>
+            <div class="build-content">
+                <div class="domain_container">
+                  
+                        <div class="usability_domain deg0"><span style="position: absolute; right:15px; top:50px" onclick="description_modal('usability_domain', '{{bco_meta.usability_domain.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span> <button data-value="usability_domain" id="btn__domain_usability" type="button" class="btn btn-circle btn-xl btn-usability">usability</button></div>
+                        <div class="object_domain deg45"><span style="position: absolute; left: 130px; bottom:70px" onclick="description_modal('2791_object', '{{bco_meta.object_id.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span> <button data-value="objectinfo" id="btn_domain_2791" type="button" class="btn btn-2791 btn-circle btn-xl">2791object</button></div>
+                        <div class="description_domain deg135"><button data-value="description_domain" id="btn_domain_description" type="button" class="btn btn-description btn-circle btn-xl">description</button> <span style="position: absolute; left: 130px; top:50px" onclick="description_modal('description_domain', '{{bco_meta.description_domain.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span> </div>
+                    
+                  
+                        
+                        <div class="provenance_domain deg180"><span style="position: absolute; right:15px; top:50px" onclick="description_modal('provenance_domain', '{{bco_meta.provenance_domain.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span> <button data-value="provenance_domain" id="btn_domain_provenance" type="button" class="btn btn-provenance btn-circle btn-xl">provenance</button></div>
+                        <div class="source_domain"><button data-value="source" id="btn_source" type="button" class="btn btn-secondary btn-circle btn-xxl">Source</button></div>
+                        <div class="error_domain deg225"><button data-value="error_domain" id="btn_domain_error" type="button" class="btn btn-error btn-circle btn-xl">error</button> <span style="position: absolute; left: 130px; top:50px" onclick="description_modal('error_domain', '{{bco_meta.error_domain.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span></div>
+                    
+                  
+                        <div class="parametric_domain"><span style="position: absolute; right: 15px; top:50px" onclick="description_modal('parametric_domain', '{{bco_meta.parametric_domain.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span> <button data-value="parametric_domain" id="btn_domain_parametric" type="button" class="btn btn-parametric btn-circle btn-xl">parametric</button></div>
+                        <div class="io_domain"><span style="position: absolute; left: 130px; top:70px" onclick="description_modal('io_domain', '{{bco_meta.io_domain.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span> <button data-value="io_domain" id="btn_domain_io" type="button" class="btn btn-io btn-circle btn-xl">io</button></div>
+                        <div class="execution_domain"><button data-value="execution_domain" id="btn_domain_execution" type="button" class="btn btn-execution btn-circle btn-xl">execution</button> <span style="position: absolute; left: 130px; top:50px" onclick="description_modal('execution_domain', '{{bco_meta.execution_domain.description}}')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg></span></div>
+                    
+                </div>
+            </div>  
+            <div class="footer"></div>
+            <div class="row" style="float: right; position: relative; bottom: 150px;">
+              <div class="col" style="position: sticky; bottom: 50px;">
+                  <button class="btn btn-outline-primary" onclick="sendEmail();">
+                  <i class="bi bi-envelope"></i>
+                      Feedback
+                  </button>
+              </div>
+              <div class="col" style="position: sticky; bottom: 50px;">
+                  <a href="https://github.com/biocompute-objects/dnanexus/issues/new/choose" target="_blank" class="btn btn-outline-primary">
+                      <i class="bi bi-github"></i>
+                      Raise Github Issue
+                  </a>
+              </div>
+              </div>   
+        </div>
+        {% include "fileupload.html" %}
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% block file_uploader %}
+        {% csrf_token %}
+        
+        <div id='image_zoom_container' class="modal" tabindex="-1" role="dialog" aria-labelledby="descriptionLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" id="image_zoom">
+                        <div style="position: sticky; top: 60px;">
+                        <button type="button" class="close" style="color: black;" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>    
+                        </div>
+                        <img src="" id="imagepreview" style="width: 470px; height: 400px;" >
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    {% endblock %}

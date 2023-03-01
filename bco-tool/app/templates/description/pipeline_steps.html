@@ -1,0 +1,83 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/description.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table style="overflow-y: scroll; overflow-x: scroll;" class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+        <tr>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.step_number', '{{pipeline_steps_meta.step_number.description}}')">step_number</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.name', '{{pipeline_steps_meta.name.description}}')">name</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.description', '{{pipeline_steps_meta.description.description}}')">description</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.version', '{{pipeline_steps_meta.version.description}}')">version</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.prerequisite', '{{pipeline_steps_meta.prerequisite.description}}')">prerequisite</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.input_list', '{{pipeline_steps_meta.input_list.description}}')">input_list</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('pipeline_steps.output_list', '{{pipeline_steps_meta.output_list.description}}')">output_list</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ps in pipeline_steps %}
+        <tr>
+            {% if forloop.last %}
+            <th scope="row" contenteditable='true' key="step_number" class="autofocus"
+                onblur="edit_array_object_value('pipeline_steps', this, '{{forloop.counter0}}')" >{{ ps.step_number }}
+            </th>
+            {% else %}
+            <th scope="row" contenteditable='true' key="step_number"
+                onblur="edit_array_object_value('pipeline_steps', this, '{{forloop.counter0}}')">{{ ps.step_number }}
+            </th>
+            {% endif %}
+            <td contenteditable='true' key="name" 
+                onblur="edit_array_object_value('pipeline_steps', this, '{{forloop.counter0}}')">{{ ps.name }}</td>
+            <td contenteditable='true' key="description" 
+                onblur="edit_array_object_value('pipeline_steps', this, '{{forloop.counter0}}')">{{ ps.description }}
+            </td>
+            <td contenteditable='true' key="version" 
+                onblur="edit_array_object_value('pipeline_steps', this, '{{forloop.counter0}}')">{{ ps.version }}</td>
+            <td onclick="update_panel('prerequisite','?step_index={{ forloop.counter0 }}', 'name: {{ps.name}}')">
+                <div style="display: flex;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">{{ ps.prerequisite|length }}</div>
+                </div>
+            </td>
+            <td onclick="update_panel('input_list','?step_index={{ forloop.counter0 }}', 'name: {{ps.name}}')">
+                <div style="display: flex;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">{{ ps.input_list|length }}</div>
+                </div>
+            </td>
+            <td onclick="update_panel('output_list','?step_index={{ forloop.counter0 }}', 'name: {{ps.name}}')">
+                <div style="display: flex;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">{{ ps.output_list|length }}</div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button id="add_button" class="btn btn-outline-primary" style="padding-left:5px" uri="pipeline_steps" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+
+{% endblock %}

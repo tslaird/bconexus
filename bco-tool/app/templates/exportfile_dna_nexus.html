@@ -1,0 +1,37 @@
+{% block file_uploader %}
+{% csrf_token %}
+<div id='dna_export_container' class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:navy;">
+                <h4 class="modal-title" id="myModalLabel" style="float: left; color: white;">Export BCO to DNAnexus Workflow</h4>
+                <button type="button" class="close" data-dismiss="modal" style="color: white;" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; flex-direction: row;">
+                    <label style="flex: 1; justify-content: flex-end;" for="#dna-export-bco-name">BCO Name</label>
+                    <input type="text" style="border-radius: 10px; flex: 2;" id="dna-export-bco-name" placeholder="BCO name">
+                </div>
+                <div id="dna_project_div" style="padding: 5px;">
+                    <input type="text" id="dna-export-token" name="dnaaccesstoken" style="margin-right: 10px; visibility: hidden; width: 200px; border-radius: 10px;" placeholder="DNAnexus access token">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 10px;" onclick="get_dna_export_projects(this)">Get Projects</button>
+                    <div id="dna_export_project_selector_div" style="visibility: hidden; padding: 5px;">
+                        <label for="dna-projects">Select Project:</label>
+                        <span style="padding-left: 30px;">
+                        <select id="dna-export-projects" style="width: 250px; border-radius: 10px;" name='dna-projects' >
+                            <option value="">select a project</option>
+                        </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" style="border-radius: 10px;" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" style="border-radius: 10px;" onclick="export_file_to_dnanexus(this)">Upload to DNAnexus</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

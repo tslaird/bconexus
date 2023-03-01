@@ -1,0 +1,52 @@
+{% block bco %}
+{% load static %}
+<div class="row">
+    <div class="col-2">
+<div id="pop" onclick="openZoom()" class="card" style="width: 200px;  border-radius: 20px; border-color: lightblue;">
+    <img id="imageresource" src="{% static 'images/description.jpg' %}" class="card-img-top">
+</div>
+</div>
+<div class="col-10">
+<table class="table table-responsive-md table-striped table-borderless">
+    <thead style="top: 0; position: sticky; z-index: 10; background-color:#eeefef;">
+        <tr>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('xref.namespace', '{{xref_meta.items.properties.namespace.description}}')">namespace</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('xref.name', '{{xref_meta.items.properties.name.description}}')">name</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('xref.ids', '{{xref_meta.items.properties.ids.description}}')">ids</button>
+            </th>
+            <th scope="col"><button type="button" class="btn btn-link"
+                    onclick="description_modal('xref.access_time', '{{xref_meta.items.properties.access_time.description}}')">access_time</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for x in xrefs %}
+        <tr>
+            <td style="text-align: left;" contenteditable='true' key="namespace" 
+                onblur="edit_array_object_value('xref', this, '{{forloop.counter0}}')">{{ x.namespace }}</td>
+            <td style="text-align: left;" contenteditable='true' key="name" 
+                onblur="edit_array_object_value('xref', this, '{{forloop.counter0}}')">{{ x.name }}</td>
+            <td onclick="update_panel('ids','?step_index={{ forloop.counter0 }}', 'name: {{x.name}}')">
+                <div style="display: flex;">
+                    <div class="triangle-right" style="flex: 1;"></div>
+                    <div style="flex: 1;">({{x.ids|length}})</div>
+                </div>
+            </td>
+            <td height="40px"><input key="access_time" type="datetime-local" step="10" style="border-radius: 10px; background-color:transparent;"
+                onchange="edit_array_object_value('xref', this, '{{forloop.counter0}}')" value="{{ x.access_time }}">
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <button class="btn btn-outline-primary" style="padding-left:5px" uri="xref" onclick="add_array_object_row(this)">Add Row</button>
+</div>
+</div>
+</div>
+{% endblock %}
