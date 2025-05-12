@@ -19,3 +19,5 @@ docker build --platform linux/amd64 -t bconexus .
 docker run -p 8000:8000 bconexus
 ```
 Then navigate to http://localhost/8000
+
+**Note: The "Feedback" and "Raise Github Issue" button within the app will redirect to the original developers (not myself)
