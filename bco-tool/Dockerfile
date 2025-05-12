@@ -11,7 +11,7 @@ COPY dxCompiler-2.10.3.jar /dxCompiler-2.10.3.jar
 # install pfda cli
 COPY install_pfda.sh /install_pfda.sh
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 
 RUN mkdir /bconexus
 

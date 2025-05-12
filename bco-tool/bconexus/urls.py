@@ -20,7 +20,7 @@ from django.urls import path
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('index', index, name='index'),
+    path('', index, name='index'),
     path('load_cwl', load_cwl, name='load_cwl'),
     path("load_comparison_cwl", load_comparison_cwl, name="load_comparison_cwl"),
     path('upload_bco', upload_bco, name='upload_bco'),
